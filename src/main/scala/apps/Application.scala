@@ -2,19 +2,28 @@ package apps
 
 import cats.effect.{ExitCode, IO, IOApp}
 import connectors.WikipediaReader
-import support.HttpClient
 
 object Application extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
     val name = args.head
     
-    val wikipediaReader: WikipediaReader = new WikipediaReader(new HttpClient)
+    val wikipediaReader: WikipediaReader = new WikipediaReader
     
     wikipediaReader
-      .getWikipediaPageFor(name)
+      .getInfoForBand(name)
       .map(println)
       .as(ExitCode.Success)
     
   }
 
+}
+
+object Sandbox extends IOApp.Simple {
+  override def run: IO[Unit] = {
+    val wikipediaReader: WikipediaReader = new WikipediaReader
+
+    wikipediaReader
+      .getAllLinksForPage("Alexisonfire")
+      .map(println)
+  }
 }

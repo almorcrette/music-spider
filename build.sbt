@@ -24,7 +24,8 @@ val http4sDependencies = Seq(
 
 val mainDependencies = Seq(
   "org.typelevel" %% "cats-effect" % "3.5.0",
-  "com.beachape" %% "enumeratum-play" % "1.7.3"
+  "com.beachape"  %% "enumeratum-play" % "1.7.3",
+  "org.jsoup"     % "jsoup"            % "1.15.4"
 ) ++
   circeDependencies ++
   http4sDependencies
